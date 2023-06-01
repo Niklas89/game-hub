@@ -7,7 +7,7 @@ interface Props {
 
 const GameCardContainer = ({ children }: Props) => {
   return (
-    <Box width="300px" borderRadius={10} overflow="hidden">
+    <Box borderRadius={10} overflow="hidden">
       {/* overflow:hidden is needed, otherwise border radius on the top is not applied on the image */}
       {children}
     </Box> // Box returns a div in chakra when rendered
