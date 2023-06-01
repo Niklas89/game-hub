@@ -15,6 +15,7 @@ export interface Game {
     name: string;
     background_image: string;
     parent_platforms: {platform: Platform}[] // in browser, inspect, Network tab, click on get game request, Preview tab and click on a game
+    metacritic: number;
   }
   
   interface FetchGamesResponse {
