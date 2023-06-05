@@ -20,10 +20,14 @@ export interface Game {
     metacritic: number;
   }
   
-  const useGames = (selectedGenre: Genre | null) =>
-  useData<Game>("/games", { params: { genres: selectedGenre?.id } }, [
-    selectedGenre?.id,
-  ]);
+  
+  const useGames = (selectedGenre: Genre | null, selectedPlatform: Platform | null) =>
+  useData<Game>("/games", { 
+    params: { // parameters for the server call
+      genres: selectedGenre?.id, 
+      platforms: selectedPlatform?.id 
+    }}, 
+    [selectedGenre?.id, selectedPlatform?.id]); // [selectedGenre?.id, selectedPlatform?.id] dependency array so when we get a new platform or genre the useEffect refreshes the data 
 
   /*
   interface FetchGamesResponse {
