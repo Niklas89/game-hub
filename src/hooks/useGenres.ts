@@ -13,7 +13,7 @@ export interface Genre {
 
 // const useGenres = () => ({ data: genres, isLoading: false, error: null })
 
-const useGenres = () => useData<Genre>("genres");
+const useGenres = () => useData<Genre>("/genres");
 
 /*
 interface FetchGenresResponse {

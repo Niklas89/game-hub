@@ -37,7 +37,7 @@ const PlatformIconList = ({ platforms }: Props) => {
       {platforms.map((platform) => (
         // <Text>{platform.name}</Text>
         // gray.500 found in https://chakra-ui.com/docs/styled-system/theme
-        <Icon as={iconMap[platform.slug]} color="gray.500" />
+        <Icon key={platform.id} as={iconMap[platform.slug]} color="gray.500" />
       ))}
     </HStack>
   );
