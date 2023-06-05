@@ -5,6 +5,7 @@ import apiClient from "../services/api-client";
 import { CanceledError } from "axios";
 import useData from "./useData";
 import { Genre } from "./useGenres";
+import { GameQuery } from "../App";
 
 export interface Platform {
     id: number;
@@ -21,13 +22,17 @@ export interface Game {
   }
   
   
-  const useGames = (selectedGenre: Genre | null, selectedPlatform: Platform | null) =>
+  //replaced by gameQuery: const useGames = (selectedGenre: Genre | null, selectedPlatform: Platform | null) =>
+  const useGames = (gameQuery: GameQuery) =>
   useData<Game>("/games", { 
     params: { // parameters for the server call
-      genres: selectedGenre?.id, 
-      platforms: selectedPlatform?.id 
+      /*replaced by gameQuery - genres: selectedGenre?.id, 
+      platforms: selectedPlatform?.id */
+      genres: gameQuery.genre?.id,
+      platforms: gameQuery.platform?.id
     }}, 
-    [selectedGenre?.id, selectedPlatform?.id]); // [selectedGenre?.id, selectedPlatform?.id] dependency array so when we get a new platform or genre the useEffect refreshes the data 
+    // [selectedGenre?.id, selectedPlatform?.id]); - dependency array replaced by gameQuery
+    [gameQuery]); // call server when gameQuery is updated
 
   /*
   interface FetchGamesResponse {
