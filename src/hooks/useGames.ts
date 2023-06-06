@@ -19,6 +19,8 @@ export interface Game {
     background_image: string;
     parent_platforms: {platform: Platform}[] // in browser, inspect, Network tab, click on get game request, Preview tab and click on a game
     metacritic: number;
+    rating_top: number; // a whole number
+    // rating: number; // a floating point number
   }
   
   
