@@ -35,11 +35,11 @@ const GenreList = ({ selectedGenre, onSelectGenre }: Props) => {
               <Image
                 boxSize="32px"
                 borderRadius={8}
-                objectFit="cover"
+                objectFit="cover" //  the img will be fit to fill the container while preserving its aspect ratio
                 src={getCroppedImageUrl(genre.image_background)}
               />
               <Button
-                whiteSpace="normal"
+                whiteSpace="normal" // nowrap is the default value
                 textAlign="left"
                 fontWeight={genre.id === selectedGenre?.id ? "bold" : "normal"}
                 onClick={() => onSelectGenre(genre)}
