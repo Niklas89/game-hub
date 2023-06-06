@@ -2,6 +2,7 @@
 
 const getCroppedImageUrl = (url: string) => {
   //if (!url) return noImage;
+  if (!url) return "";
   
   const target = 'media/';
   // we want : media/crop/600/400/

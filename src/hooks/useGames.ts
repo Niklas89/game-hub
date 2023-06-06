@@ -29,7 +29,8 @@ export interface Game {
       /*replaced by gameQuery - genres: selectedGenre?.id, 
       platforms: selectedPlatform?.id */
       genres: gameQuery.genre?.id,
-      platforms: gameQuery.platform?.id
+      platforms: gameQuery.platform?.id,
+      ordering: gameQuery.sortOrder
     }}, 
     // [selectedGenre?.id, selectedPlatform?.id]); - dependency array replaced by gameQuery
     [gameQuery]); // call server when gameQuery is updated
