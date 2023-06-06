@@ -1,8 +1,7 @@
-//import noImage from '../assets/no-image-placeholder.webp';
+import noImage from '../assets/no-image-placeholder.webp';
 
 const getCroppedImageUrl = (url: string) => {
-  //if (!url) return noImage;
-  if (!url) return "";
+  if (!url) return noImage;
   
   const target = 'media/';
   // we want : media/crop/600/400/
