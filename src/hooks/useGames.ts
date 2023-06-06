@@ -30,7 +30,8 @@ export interface Game {
       platforms: selectedPlatform?.id */
       genres: gameQuery.genre?.id,
       platforms: gameQuery.platform?.id,
-      ordering: gameQuery.sortOrder
+      ordering: gameQuery.sortOrder,
+      search: gameQuery.searchText
     }}, 
     // [selectedGenre?.id, selectedPlatform?.id]); - dependency array replaced by gameQuery
     [gameQuery]); // call server when gameQuery is updated
