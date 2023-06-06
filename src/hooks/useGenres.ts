@@ -1,4 +1,4 @@
-//import genres from "../data/genres";
+import genres from "../data/genres";
 import useData from "./useData";
 /* import { useEffect, useState } from "react";
 import apiClient from "../services/api-client";
@@ -11,9 +11,10 @@ export interface Genre {
   image_background: string;
 }
 
-// const useGenres = () => ({ data: genres, isLoading: false, error: null })
 
-const useGenres = () => useData<Genre>("/genres");
+
+// const useGenres = () => useData<Genre>("/genres"); -- before we called the server to get the data
+const useGenres = () => ({ data: genres, isLoading: false, error: null }) // now we use static data 
 
 /*
 interface FetchGenresResponse {
