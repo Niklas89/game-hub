@@ -1,11 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
 import genres from "../data/genres";
 import { FetchResponse } from "../services/api-client";
-import apiClient from "../services/api-client";
+import APIClient from "../services/api-client";
 /* import { useEffect, useState } from "react";
 import apiClient from "../services/api-client";
 import { CanceledError } from "axios"; */
 
+const apiClient = new APIClient<Genre>("/genres");
 
 export interface Genre {
   id: number;
@@ -20,9 +21,11 @@ export interface Genre {
 // now we use react query
 const useGenres = () => useQuery({ 
   queryKey: ["genres"], 
+  queryFn: apiClient.getAll,
+  /* we now created class APIClient<T> 
   queryFn: () => 
     apiClient 
-      .get<FetchResponse<Genre>>("/genres").then(res => res.data),
+      .get<FetchResponse<Genre>>("/genres").then(res => res.data), */
   staleTime: 24 * 60 * 60 * 1000, // genres will be stored for 24hrs in the cache
   initialData: {count: genres.length, results: genres} // for the initial data we use our genres static data, so we don't need to show the loading spinner
 }); 
