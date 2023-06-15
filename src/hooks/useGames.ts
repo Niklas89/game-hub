@@ -1,6 +1,6 @@
 // https://api.rawg.io/docs/#operation/games_list and check below "Responses"
 
-import { useQuery } from "@tanstack/react-query";
+import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
 import { GameQuery } from "../App";
 import APIClient, { FetchResponse } from "../services/api-client";
 import { Platform } from "./usePlatforms";
@@ -20,16 +20,20 @@ export interface Game {
   
   //replaced by gameQuery: const useGames = (selectedGenre: Genre | null, selectedPlatform: Platform | null) =>
   const useGames = (gameQuery: GameQuery) =>
-  useQuery<FetchResponse<Game>, Error>({
+  useInfiniteQuery<FetchResponse<Game>, Error>({
     queryKey: ["games", gameQuery], // anytime the values in gameQuery object changes, React will refetch the games from the backend
-    queryFn: () => apiClient.getAll({
+    queryFn: ({ pageParam = 1 }) => apiClient.getAll({
       params: { 
         genres: gameQuery.genre?.id,
         parent_platforms: gameQuery.platform?.id,
         ordering: gameQuery.sortOrder,
-        search: gameQuery.searchText
+        search: gameQuery.searchText,
+        page: pageParam
       }
     }),
+    getNextPageParam: (lastPage, allPages) => {
+      return lastPage.next ? allPages.length + 1 : undefined;
+    }
     /* we now created class APIClient<T> 
     queryFn: () => apiClient.get<FetchResponse<Game>>("/games", {
       params: { 
