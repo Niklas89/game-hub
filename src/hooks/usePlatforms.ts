@@ -20,7 +20,10 @@ const usePlatforms = () => useQuery({
     */
     
   staleTime: 24 * 60 * 60 * 1000, // platforms will be stored for 24hrs in the cache
-  initialData: {count: platforms.length, results: platforms} // for the initial data we use our platforms static data, so we don't need to show the loading spinner
+  // for the initial data we use our platforms static data, so we don't need to show the loading spinner
+  // initialData: {count: platforms.length, results: platforms, next: null} 
+  // in the static data file we now added count, next, previous and results properties by going to "Network" > request > "Response" tabs
+  initialData: platforms
 });
 
 export default usePlatforms;

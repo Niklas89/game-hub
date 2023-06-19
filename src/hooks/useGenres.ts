@@ -27,7 +27,10 @@ const useGenres = () => useQuery({
     apiClient 
       .get<FetchResponse<Genre>>("/genres").then(res => res.data), */
   staleTime: 24 * 60 * 60 * 1000, // genres will be stored for 24hrs in the cache
-  initialData: {count: genres.length, results: genres} // for the initial data we use our genres static data, so we don't need to show the loading spinner
+  // for the initial data we use our genres static data, so we don't need to show the loading spinner
+  // initialData: {count: genres.length, results: genres, next: null}
+  // in the static data file we now added count, next, previous and results properties by going to "Network" > request > "Response" tabs
+  initialData: genres
 }); 
 
 /*
