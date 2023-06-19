@@ -1,4 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
+import ms from "ms";
 import genres from "../data/genres";
 import { FetchResponse } from "../services/api-client";
 import APIClient from "../services/api-client";
@@ -26,7 +27,8 @@ const useGenres = () => useQuery({
   queryFn: () => 
     apiClient 
       .get<FetchResponse<Genre>>("/genres").then(res => res.data), */
-  staleTime: 24 * 60 * 60 * 1000, // genres will be stored for 24hrs in the cache
+  // staleTime: 24 * 60 * 60 * 1000, // genres will be stored for 24hrs in the cache
+  staleTime: ms("24h"), // installed ms package
   // for the initial data we use our genres static data, so we don't need to show the loading spinner
   // initialData: {count: genres.length, results: genres, next: null}
   // in the static data file we now added count, next, previous and results properties by going to "Network" > request > "Response" tabs
