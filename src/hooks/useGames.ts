@@ -24,8 +24,8 @@ export interface Game {
     queryKey: ["games", gameQuery], // anytime the values in gameQuery object changes, React will refetch the games from the backend
     queryFn: ({ pageParam = 1 }) => apiClient.getAll({
       params: { 
-        genres: gameQuery.genre?.id,
-        parent_platforms: gameQuery.platform?.id,
+        genres: gameQuery.genreId,
+        parent_platforms: gameQuery.platformId,
         ordering: gameQuery.sortOrder,
         search: gameQuery.searchText,
         page: pageParam
