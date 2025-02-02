@@ -1,6 +1,8 @@
 services:
   game-hub:
-    build: .
+    image: niklasedelstam/gamehub
+    build:
+      context: .
     container_name: game-hub_c
     ports:
       - '3000:3000'
