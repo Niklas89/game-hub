@@ -10,3 +10,7 @@ services:
     tty: true
     env_file: 
       - .env
+    volumes:
+      - ./:/app
+      - /app/node_modules
+      - ./.env:/app/.env
