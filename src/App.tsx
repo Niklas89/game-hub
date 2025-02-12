@@ -9,9 +9,6 @@ import { Platform } from "./hooks/usePlatforms";
 import SortSelector from "./components/SortSelector";
 import GameHeading from "./components/GameHeading";
 
-// undefined: the absence of a value
-// null: the intentional absence of a value
-
 export interface GameQuery {
   genreId?: number;
   platformId?: number;
@@ -20,23 +17,17 @@ export interface GameQuery {
 }
 
 function App() {
-  /* replaced by GameQuery
-  const [selectedGenre, setSelectedGenre] = useState<Genre | null>(null);
-  const [selectedPlatform, setSelectedPlatform] = useState<Platform | null>(
-    null
-  ); */
-  // the query object pattern
   const [gameQuery, setGameQuery] = useState<GameQuery>({} as GameQuery);
 
   return (
     <Grid
       templateAreas={{
         base: `"nav" "main"`,
-        lg: `"nav nav" "aside main"`, // larger than 1024px
+        lg: `"nav nav" "aside main"`,
       }}
       templateColumns={{
-        base: "1fr", // 1 fraction: our column stretchs out and takes all the available space
-        lg: "250px 1fr", // first column 250px and the second column takes all the available space
+        base: "1fr",
+        lg: "250px 1fr",
       }}
     >
       <GridItem area="nav">
@@ -45,12 +36,7 @@ function App() {
         />
       </GridItem>
       <Show above="lg">
-        {/* show on large screens and above */}
         <GridItem area="aside" paddingX={5}>
-          {/* <GenreList - replaced by GameQuery
-            selectedGenre={selectedGenre}
-            onSelectGenre={(genre) => setSelectedGenre(genre)}
-          /> */}
           <GenreList
             selectedGenreId={gameQuery.genreId}
             onSelectGenre={(genre) =>
@@ -60,10 +46,6 @@ function App() {
         </GridItem>
       </Show>
       <GridItem area="main">
-        {/* <PlatformSelector - replaced by GameQuery
-          selectedPlatform={selectedPlatform}
-          onSelectPlatform={(platform) => setSelectedPlatform(platform)}
-        /> */}
         <Box paddingLeft={2}>
           <GameHeading gameQuery={gameQuery} />
           <Flex marginBottom={5}>
@@ -83,14 +65,6 @@ function App() {
             />
           </Flex>
         </Box>
-        {/* <GameGrid - replaced by GameQuery
-          selectedPlatform={selectedPlatform}
-          selectedGenre={selectedGenre}
-        /> 
-        <GameGrid
-          selectedPlatform={gameQuery.platform}
-          selectedGenre={gameQuery.genre}
-        /> */}
         <GameGrid gameQuery={gameQuery} />
       </GridItem>
     </Grid>

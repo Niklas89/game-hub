@@ -10,14 +10,9 @@ import InfiniteScroll from "react-infinite-scroll-component";
 
 interface Props {
   gameQuery: GameQuery;
-  /* replaced by GameQuery
-  selectedGenre: Genre | null;
-  selectedPlatform: Platform | null; */
 }
 
 const GameGrid = ({ gameQuery }: Props) => {
-  // const GameGrid = ({ selectedGenre, selectedPlatform }: Props) => {
-  // const { data, error, isLoading } = useGames(selectedGenre, selectedPlatform);
   const {
     data,
     error,
@@ -30,17 +25,10 @@ const GameGrid = ({ gameQuery }: Props) => {
 
   if (error) return <Text>{error.message}</Text>;
 
-  // get the number of games already fetched
-  // reduce to combine the number of results in each page
-  // initial value of total is 0, add the number of results of each page to the total
   const fetchedGamesCount =
-    data?.pages.reduce((total, page) => total + page.results.length, 0) || 0; // 0 is the default value
+    data?.pages.reduce((total, page) => total + page.results.length, 0) || 0;
 
   return (
-    // {error && <Text>{error}</Text>}
-    // columns change according to screen size
-    // removed when added InfiniteScroll: <Box padding="10px">
-    // hasNextPage will be converted to boolean with "!!", undefined default value converted to boolean false as default value
     <InfiniteScroll
       dataLength={fetchedGamesCount}
       hasMore={!!hasNextPage}
@@ -69,13 +57,6 @@ const GameGrid = ({ gameQuery }: Props) => {
         ))}
       </SimpleGrid>
     </InfiniteScroll>
-    /* removed when added InfiniteScroll:
-      {hasNextPage && (
-        <Button onClick={() => fetchNextPage()} marginY={5}>
-          {isFetchingNextPage ? "Loading..." : "Load More"}
-        </Button>
-      )} 
-    </Box> */
   );
 };
 

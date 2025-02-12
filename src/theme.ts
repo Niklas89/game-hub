@@ -4,9 +4,6 @@ const config: ThemeConfig = {
     initialColorMode: "dark"
 };
 
-// used the same shades of gray as on the rawg.io website:
-// https://chakra-ui.com/docs/styled-system/theme#colors and click on "Smart Watch"
-// then you get redirected to https://smart-swatch.netlify.app/
 const theme = extendTheme({ 
     config,
     colors: {

@@ -14,14 +14,6 @@ const GameCard = ({ game }: Props) => {
     <Card>
       <Image src={getCroppedImageUrl(game.background_image)} />
       <CardBody>
-        {/* by grabing the platform object : 
-        {game.parent_platforms.map((platform) => (
-          <Text>{platform.platform.name}</Text> 
-          OR by grabing the platform property below: 
-        {game.parent_platforms.map(({ platform }) => (
-          <Text>{platform.name}</Text>
-        ))}
-        */}
         <HStack justifyContent="space-between" marginBottom={3}>
           <PlatformIconList
             platforms={game.parent_platforms.map((p) => p.platform)}
